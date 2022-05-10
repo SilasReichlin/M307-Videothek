@@ -20,7 +20,7 @@
                 <th>Status</th>
         </thead>
         <tbody>
-        <?php foreach ($borrow as $data) { ?>
+        <?php foreach ($borrows as $data) { ?>
             <tr>
                 <td><?php echo $data['fk_video'] ?? ''; ?></td>
                 <td><?php echo $data['gesamtausleihetage'] ?? ''; ?></td>
