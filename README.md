@@ -1,3 +1,18 @@
-# Kursframework
+# M307-Videothek-THL-SRE
 
-[Download-Link](https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2FIctBerufsbildungZentralschweiz%2Fmodul-307-projekte%2Ftree%2Fmaster%2F_Framework)
+## 1. Konzept
+
+
+### 1.1 Sitemap
+| Titel         | Route             | Inhalt/Zweck    |
+| ------------- | ------------- | ------------------- |
+|               |               |                     |
+|               |               |                     |
+
+
+### 1.2 Formulare
+
+### 1.3 Validierung
+
+### 1.4 Datenbank
+
