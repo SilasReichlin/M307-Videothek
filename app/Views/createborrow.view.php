@@ -27,7 +27,12 @@
                     </div>
                     <div class="form-group">
                         <label for="name">Mitglied-Status:</label>
-                        <input type="text" name="status" required><br>
+                        <select name="status" id="status">
+                            <option value="none">Keiner</option>
+                            <option value="bronze">Bronze</option>
+                            <option value="silver">Silber</option>
+                            <option value="gold">Gold</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="name">Ausgeleihtes Video:</label>
