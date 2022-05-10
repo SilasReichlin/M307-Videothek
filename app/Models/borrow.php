@@ -13,7 +13,7 @@ class Borrow
     public string $phone = '';
     public string $video = '';
     public int $videoid = 0;
-    public int $membership = '';
+    public int $membership = 0;
     public bool $borrowstate = false;
 
     //constructors
