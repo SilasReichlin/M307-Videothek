@@ -13,7 +13,7 @@
 
         <fieldset>
             <legend>Ausleihe erfassen</legend>
-            <form action="createborrow.view.php" method="post">
+            <form action="createborrow" method="post" createborrow?id=<?php $borrow['id'] ?? '' ?>>
                 <div class="form-group">
                     <label for="name">Name:</label>
                     <input type="text" name="name" required><br>
@@ -23,7 +23,7 @@
                     </div>
                     <div class="form-group">
                         <label for="name">Telefon:</label>
-                        <input type="tel" name="tel" required><br>
+                        <input type="tel" name="telefon" required><br>
                     </div>
                     <div class="form-group">
                         <label for="name">Mitglied-Status:</label>
@@ -36,7 +36,7 @@
                     </div>
                     <div class="form-group">
                         <label for="name">Ausgeleihtes Video:</label>
-                        <input type="text" name="video" required><br>
+                        <input type="text" name="fk_videos" required><br>
                     </div>
                     <input type="submit">
             </form>
