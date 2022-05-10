@@ -19,7 +19,7 @@ class BorrowController
 
     public function create(): void
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['id'] == '' || null) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['id'] == '' || $_POST['id'] == null) {
             $this->borrow->name = trim(htmlspecialchars($_POST['name']));
             $this->borrow->email = trim(htmlspecialchars($_POST['email']));
             $this->borrow->phone = htmlspecialchars($_POST['telefon']);
