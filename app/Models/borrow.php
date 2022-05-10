@@ -10,6 +10,8 @@ class Borrow
     public string $name = '';
     public string $email = '';
     public string $telefon = '';
+    public int $video = 0;
+    public string $movietitle = '';
 
     //constructors
     public function __construct()
@@ -20,7 +22,7 @@ class Borrow
     //functions
     public function getAllBorrows() : array
     {
-        $statement = $this->db->prepare("SELECT * FROM $this->table");
+        $statement = $this->db->prepare("SELECT ausleihe.name, ausleihe.email, ausleihe.telefon, ausleihe.ausleihstatus, ausleihe.fk_video, ausleihe.fk_mitgliedstatus, movies.title as 'title' FROM ausleihe, movies WHERE ausleihe.fk_video = movies.id;");
         $statement->execute();
 
         return $statement->fetchAll();
