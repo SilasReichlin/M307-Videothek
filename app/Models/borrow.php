@@ -11,6 +11,8 @@ class Borrow
     public string $email = '';
     public string $telefon = '';
     public int $video = 0;
+    public int $mitgliedstatus = 0;
+    public bool $ausleihstatus = false;
 
     //constructors
     public function __construct()
@@ -33,6 +35,18 @@ class Borrow
         $statement->bindParam(':name', $this->name);
         $statement->bindParam(':email', $this->email);
         $statement->bindParam(':telefon', $this->telefon);
+        $statement->execute();
+    }
+
+    public function updateBorrow() : void
+    {
+        $statement = $this->db->prepare("UPDATE $this->table SET name = :name, email = :email, telefon = :telefon, ausleihstatus = :ausleihstatus, fk_mitgliedstatus = :fk_mitgliedstatus, fk_video = :fk_video");
+        $statement->bindParam(':name', $this->name);
+        $statement->bindParam(':email', $this->email);
+        $statement->bindParam(':telefon', $this->telefon);
+        $statement->bindParam(':ausleihstatus', $this->ausleihstatus);
+        $statement->bindParam(':fk_mitgliedstatus', $this->mitgliedstatus);
+        $statement->bindParam(':fk_video', $this->video);
         $statement->execute();
     }
 }

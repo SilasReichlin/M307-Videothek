@@ -15,10 +15,34 @@ class BorrowController
         require 'app/Views/borrow.view.php';
     }
 
-    public function postBorrow()
+    public function postBorrow() : void
     {
+        try
+        {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['telefon']) && isset($_POST['fk_video'])) {
+                    $this->borrow->name = trim(htmlspecialchars($_POST['name']));
+                    $this->borrow->email = trim(htmlspecialchars($_POST['email']));
+                    $this->borrow->video = $_POST['fk_video'];
+    
+                    if (is_numeric($_POST['telefon'])) {
+                        $this->borrow->telefon = trim(htmlspecialchars($_POST['telefon']));
+                    }
+    
+                    $this->borrow->createBorrow();
+                    require 'app/Views/borrow.view.php';
+                }
+            }
+        }
+        catch(Exception $ex)
+        {
+            throw new Exception($ex->getMessage());
+        }
+    }
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    public function putBorrow() : void
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
             if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['telefon']) && isset($_POST['fk_video'])) {
                 $this->borrow->name = trim(htmlspecialchars($_POST['name']));
                 $this->borrow->email = trim(htmlspecialchars($_POST['email']));
@@ -28,8 +52,9 @@ class BorrowController
                     $this->borrow->telefon = trim(htmlspecialchars($_POST['telefon']));
                 }
 
-                $this->borrow->createBorrow();
+                $this->borrow->updateBorrow();
+                require 'app/Views/borrow.view.php';
             }
-        }
+        } 
     }
 }
