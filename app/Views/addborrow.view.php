@@ -9,19 +9,34 @@
 </head>
 
 <body>
-    <form action="addborrow.view.php" method="post">
-        <label for="name">Name</label>
-        <input type="text" name="name" required><br>
-        <label for="name">E-mail Adresse</label>
-        <input type="email" name="email" required><br>
-        <label for="name">Telefon</label>
-        <input type="tel" name="tel" required><br>
-        <label for="name">Mitglied-Status</label>
-        <input type="text" name="status" required><br>
-        <label for="name">Ausgeleihtes Video</label>
-        <input type="text" name="video" required><br>
-        <input type="submit">
-    </form>
+    <div class="container_contend">
+
+        <fieldset>
+            <legend>Ausleihe erfassen</legend>
+            <form action="addborrow.view.php" method="post">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" name="name" required><br>
+                    <div class="form-group">
+                        <label for="name">E-mail Adresse:</label>
+                        <input type="email" name="email" required><br>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Telefon:</label>
+                        <input type="tel" name="tel" required><br>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Mitglied-Status:</label>
+                        <input type="text" name="status" required><br>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Ausgeleihtes Video:</label>
+                        <input type="text" name="video" required><br>
+                    </div>
+                    <input type="submit">
+            </form>
+        </fieldset>
+    </div>
 </body>
 
 </html>

@@ -15,6 +15,7 @@ body {
 .container_contend {
     margin-left: 10%;
     margin-right: 10%;
+    margin-top: 5%;
 }
 h2 {
     font-size: 18px;
@@ -43,7 +44,6 @@ tr {
 }
 
 table {
-    margin-top: 5%;
     width: 100%;
     border-collapse: collapse;
 }
