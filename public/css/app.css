@@ -1,9 +1,10 @@
 body {
-    background-color: blanchedalmond;
+    background-color: rgb(225, 237, 225);
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
 }
+
 .container {
     background-color: white;
     height: 100vh;
@@ -11,9 +12,35 @@ body {
     max-width: 600px;
     padding: 50px 30px;
 }
+
 h2 {
     font-size: 18px;
 }
-a, a:visited {
+
+a,
+a:visited {
     color: #555;
+}
+
+th {
+    text-align: left;
+    background-color: #4dff94;
+}
+
+th,
+td {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+table {
+    max-width: 100%;
+}
+
+.tablebookingline {
+    max-width: 50% !important;
+}
+
+tr:hover {
+    background-color: #f5f5f5;
 }
