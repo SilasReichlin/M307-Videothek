@@ -13,7 +13,7 @@
 
         <fieldset>
             <legend>Ausleihe erfassen</legend>
-            <form action="addborrow.view.php" method="post">
+            <form action="createborrow.view.php" method="post">
                 <div class="form-group">
                     <label for="name">Name:</label>
                     <input type="text" name="name" required><br>
