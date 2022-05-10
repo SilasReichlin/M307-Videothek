@@ -103,7 +103,7 @@ class BorrowController
             }
     }
 
-    public function Borrow(): void
+    public function updateBorrow() : void 
     {
         require 'app/Views/addborrow.view.php';
     }
