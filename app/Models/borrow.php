@@ -21,7 +21,7 @@ class Borrow
     //functions
     public function getAllBorrows() : array
     {
-        $statement = $this->db->prepare("SELECT ausleihe.name, ausleihe.email, ausleihe.telefon, ausleihe.ausleihstatus, ausleihe.fk_video, ausleihe.fk_mitgliedstatus, movies.title as 'title' FROM ausleihe, movies WHERE ausleihe.fk_video = movies.id;");
+        $statement = $this->db->prepare("SELECT ausleihe.name, ausleihe.email, ausleihe.telefon, ausleihe.ausleihstatus, ausleihe.fk_video, mitgliedstatus.mitgliedschaft, mitgliedstatus.gesamtausleihtage, movies.title as 'title' FROM ausleihe, movies, mitgliedstatus WHERE ausleihe.fk_video = movies.id AND ausleihe.fk_mitgliedstatus = mitgliedstatus.id;");
         $statement->execute();
 
         return $statement->fetchAll();
