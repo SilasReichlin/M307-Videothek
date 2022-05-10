@@ -4,8 +4,6 @@ include 'app/Models/Borrow.php';
 class BorrowController
 {
     private Borrow $borrow;
-    public $borrows;
-
     public function __construct()
     {
         $this->borrow = new Borrow();
@@ -13,7 +11,7 @@ class BorrowController
 
     public function index()
     {
-        $this->borrows = $this->borrow->getAllBorrows();
+        $borrows = $this->borrow->getAllBorrows();
         require 'app/Views/borrow.view.php';
     }
 
@@ -33,7 +31,5 @@ class BorrowController
                 $this->borrow->createBorrow();
             }
         }
-
-        $this->borrows = $this->borrow->getAllBorrows();
     }
 }

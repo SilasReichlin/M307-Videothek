@@ -22,7 +22,7 @@
         <tbody>
         <?php foreach ($borrows as $data) { ?>
             <tr>
-                <td><?php echo $data['fk_video'] ?? ''; ?></td>
+                <td><?php echo $data['title'] ?? ''; ?></td>
                 <td><?php echo $data['gesamtausleihetage'] ?? ''; ?></td>
                 <td><?php echo $data['name'] ?? ''; ?></td>
                 <td><?php echo $data['email'] ?? ''; ?></td>

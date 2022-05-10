@@ -11,7 +11,6 @@ class Borrow
     public string $email = '';
     public string $telefon = '';
     public int $video = 0;
-    public string $movietitle = '';
 
     //constructors
     public function __construct()
