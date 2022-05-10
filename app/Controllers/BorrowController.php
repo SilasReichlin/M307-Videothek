@@ -35,6 +35,10 @@ class BorrowController
                 require 'app/Views/borrow.view.php';
             }
         }
+        else
+        {
+            require 'app/Views/borrow.view.php';
+        }
     }
 
     public function edit(): void
