@@ -13,7 +13,8 @@
 
         <fieldset>
             <legend>Ausleihe erfassen</legend>
-            <form action="BorrowController.php" method="post" createborrow?id=<?php $borrow['id'] ?? '' ?>>
+            <!-- ?id= $borrow['id'] ?? '' mit php tag-->
+            <form action="create" method="POST">
                 <div class="form-group">
                     <label for="name">Name:</label>
                     <input type="text" name="name" required><br>
@@ -36,7 +37,7 @@
                     </div>
                     <div class="form-group">
                         <label for="name">Ausgeleihtes Video:</label>
-                        <input type="text" name="fk_videos" required><br>
+                        <input type="text" name="video" required><br>
                     </div>
                     <input type="submit">
             </form>

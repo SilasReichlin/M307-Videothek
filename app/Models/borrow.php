@@ -13,7 +13,8 @@ class Borrow
     public string $phone = '';
     public string $video = '';
     public int $videoid = 0;
-    public int $membership = 0;
+    public string $membership = '';
+    public int $membershipid = 0;
     public bool $borrowstate = false;
 
     //constructors
@@ -47,7 +48,7 @@ class Borrow
         $statement->bindParam(':email', $this->email);
         $statement->bindParam(':telefon', $this->phone);
         $statement->bindParam(':ausleihstatus', $this->borrowstate);
-        $statement->bindParam(':fk_mitgliedstatus', $this->membership);
+        $statement->bindParam(':fk_mitgliedstatus', $this->membershipid);
         $statement->bindParam(':fk_video', $this->videoid);
         $statement->execute();
     }
