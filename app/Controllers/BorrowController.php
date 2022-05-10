@@ -77,8 +77,12 @@ class BorrowController
                 }
 
                 $this->borrow->updateBorrow();
-                require 'app/Views/borrow.view.php';
             }
-        } 
+        }
+    }
+
+    public function createBorrow() : void 
+    {
+        require 'app/Views/addborrow.view.php';
     }
 }
