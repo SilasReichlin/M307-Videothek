@@ -4,7 +4,7 @@ require 'core/bootstrap.php';
 $routes = [
 	'/hallo/welt' => 'WelcomeController@index',
 	'/borrow' => 'BorrowController@index',
-	'/createborrow' => 'BorrowController@updateBorrow',
+	'/createborrow' => 'BorrowController@edit',
 ];
 
 $db = [

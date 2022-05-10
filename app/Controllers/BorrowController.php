@@ -13,6 +13,7 @@ class BorrowController
     public function index()
     {
         $borrows = $this->borrow->getAllBorrows();
+        $borrow = $this->borrow;
         require 'app/Views/borrow.view.php';
     }
 
@@ -23,6 +24,8 @@ class BorrowController
             $this->borrow->email = trim(htmlspecialchars($_POST['email']));
             $this->borrow->phone = htmlspecialchars($_POST['telefon']);
             $this->borrow->videoid = htmlspecialchars($_POST['fk_video']);
+            $this->borrow->membership = htmlspecialchars($_POST['fk_mitgliedstatus']);
+
             $errors = [];
             $errors = $this->ValidateBorrow();
 
