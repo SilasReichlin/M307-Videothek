@@ -3,6 +3,7 @@ require 'core/bootstrap.php';
 
 $routes = [
 	'/hallo/welt' => 'WelcomeController@index',
+	'/borrow' => 'BorrowController@index',
 ];
 
 $db = [

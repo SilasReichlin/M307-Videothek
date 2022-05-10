@@ -7,6 +7,6 @@ class BorrowController
     {
         $borrows = $this->borrow->getAllBorrows();
 
-        require '';
+        require 'app/Views/borrow.view.php';
     }
 }
