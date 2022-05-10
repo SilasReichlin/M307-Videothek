@@ -7,11 +7,13 @@ class Borrow
 
     //properties
     public PDO $db;
+    public int $id = 0;
     public string $name = '';
     public string $email = '';
     public string $telefon = '';
-    public int $video = 0;
-    public int $mitgliedstatus = 0;
+    public string $video = '';
+    public int $videoid = 0;
+    public int $mitgliedstatus = '';
     public bool $ausleihstatus = false;
 
     //constructors
@@ -46,7 +48,7 @@ class Borrow
         $statement->bindParam(':telefon', $this->telefon);
         $statement->bindParam(':ausleihstatus', $this->ausleihstatus);
         $statement->bindParam(':fk_mitgliedstatus', $this->mitgliedstatus);
-        $statement->bindParam(':fk_video', $this->video);
+        $statement->bindParam(':fk_video', $this->videoid);
         $statement->execute();
     }
 }

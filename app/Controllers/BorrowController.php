@@ -4,6 +4,7 @@ include 'app/Models/Borrow.php';
 class BorrowController
 {
     private Borrow $borrow;
+
     public function __construct()
     {
         $this->borrow = new Borrow();
@@ -13,6 +14,29 @@ class BorrowController
     {
         $borrows = $this->borrow->getAllBorrows();
         require 'app/Views/borrow.view.php';
+    }
+
+    public function getBorrowById($id) : Borrow
+    {
+        $borrows = $this->borrow->getAllBorrows();
+        $searchedborrow = new Borrow;
+        foreach($borrows as $b)
+        {
+            if ($b['id'] == $id)
+            {
+                $searchedborrow->id = $b['id'];
+                $searchedborrow->name = $b['name'] ?? '';
+                $searchedborrow->email = $b['email'] ?? '';
+                $searchedborrow->telefon = $b['telefon'] ?? '';
+                $searchedborrow->video = $b['title'] ?? '';
+                $searchedborrow->mitgliedstatus = $b['mitgliedstatus'] ?? '';
+                $searchedborrow->ausleihstatus = $b['ausleihstatus'] ?? '';
+                $searchedborrow->videoid = $b['fk_video'] ?? '';
+                break;
+            }
+        }
+
+        return $searchedborrow;
     }
 
     public function postBorrow() : void
