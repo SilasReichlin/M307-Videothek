@@ -10,27 +10,34 @@
 </head>
 
 <body>
-    <table>
-        <thead>
-            <tr>
-                <th>Film</th>
-                <th>Gesamtausleihelänge</th>
-                <th>Name</th>
-                <th>email</th>
-                <th>Status</th>
-        </thead>
-        <tbody>
-        <?php foreach ($borrows as $data) { ?>
-            <tr>
-                <td><?php echo $data['title'] ?? ''; ?></td>
-                <td><?php echo $data['gesamtausleihetage'] ?? ''; ?></td>
-                <td><?php echo $data['name'] ?? ''; ?></td>
-                <td><?php echo $data['email'] ?? ''; ?></td>
-                <td><?php echo $data['ausleihstatus'] ?? ''; ?></td>
+    <div class="container_contend">
+        <table>
+            <thead>
+                <tr>
+                    <th>Film</th>
+                    <th>Gesamtausleihelänge</th>
+                    <th>Name</th>
+                    <th>email</th>
+                    <th>Status</th>
+            </thead>
+            <tbody>
+            <div>
+                <?php foreach ($borrows as $data) { ?>
+                   
 
-            </tr>
-        <?php } ?>
-        </tbody>
-    </table>
+                        <tr>
+                            <td><?php echo $data['title'] ?? ''; ?></td>
+                            <td><?php echo $data['gesamtausleihetage'] ?? ''; ?></td>
+                            <td><?php echo $data['name'] ?? ''; ?></td>
+                            <td><?php echo $data['email'] ?? ''; ?></td>
+                            <td><?php echo $data['ausleihstatus'] ?? ''; ?></td>
+
+                        </tr>
+                <?php } ?>
+                </div>
+            </tbody>
+        </table>
+    </div>
 </body>
+
 </html>
