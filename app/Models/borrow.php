@@ -1,6 +1,6 @@
 <?php 
 
-class borrow
+class Borrow
 {
     //private members
     private string $table = 'ausleihe';
@@ -12,12 +12,9 @@ class borrow
     public string $telefon = '';
 
     //constructors
-    public function __construct(string $name, string $email, string $telefon)
+    public function __construct()
     {
         $this->db = db($this->table);
-        $this->name = $name;
-        $this->email = $email;
-        $this->telefon = $telefon;
     }
 
     //functions
