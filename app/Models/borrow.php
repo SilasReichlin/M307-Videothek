@@ -39,18 +39,16 @@ class Borrow
     {
         $statement = $this->db->prepare("INSERT INTO ausleihe (name, email, telefon, fk_video, fk_mitgliedstatus, ausleihdatum, rueckgabedatum) VALUES (:name, :email, :telefon, :video, :mitgliedstatus, :ausleihdatum, :rueckgabedatum);");
         $this->membershipid = reset($this->member->getMemberShip($this->membership))['id'];
-        $this->member->fullbyorrowdays = reset($this->member->getMemberShip($this->membership))['gesamtausleihtage'];
-        $date = new DateTime($this->borrowdate);
-        $days = $this->member->fullbyorrowdays;
-        $date = date_add($date, date_interval_create_from_date_string("$days days"));
-        $date = date_create()->format('Y-m-d H:i:s');
+        $this->member->fullborrowdays = reset($this->member->getMemberShip($this->membership))['gesamtausleihtage'];
+        $returndate = date_create($this->borrowdate);
+        $returnDateCalculcated = date_add($returndate,  new DateInterval('P' . $this->member->fullborrowdays . 'D'));
         $statement->bindParam(':name', $this->name);
         $statement->bindParam(':email', $this->email);
         $statement->bindParam(':telefon', $this->phone);
         $statement->bindParam(':video', $this->videoid);
         $statement->bindParam(':mitgliedstatus', $this->membershipid);
         $statement->bindParam(':ausleihdatum', $this->borrowdate);
-        $statement->bindParam(':rueckgabedatum', $date);
+        $statement->bindParam(':rueckgabedatum', $returnDateCalculcated->format('Y-m-d H:i:s'));
         $statement->execute();
     }
 
