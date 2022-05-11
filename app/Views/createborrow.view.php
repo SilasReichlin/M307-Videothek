@@ -20,7 +20,7 @@
                     <option value="<?php echo $borrow->Silber ?? ''; ?>">Silber</option>
                     <option value="<?php echo $borrow->Gold ?? ''; ?>">Gold</option>
                 </select></label>
-            <label for="video"><span>Ausgeleihtes Video <span class="required">*</span></span><input type="video" class="input-field" name="video" value="<?php echo $borrow->video ?? ''; ?>" required /></label>
+            <label for="video"><span>Ausgeleihtes Video <span class="required">*</span></span><input type="text" class="input-field" name="video" value="<?php echo $borrow->video ?? ''; ?>" required /></label>
             <div class="form-group"> <input type="submit" value="Submit" /></div>
 
         </form>
