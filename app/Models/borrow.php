@@ -54,31 +54,30 @@ class Borrow
 
     public function updateBorrow(): void
     {
-        $statement = $this->db->prepare("UPDATE $this->table SET name = :name, email = :email, telefon = :telefon, ausleihstatus = :ausleihstatus, fk_mitgliedstatus = :mitgliedstatus, fk_video = :video");
+        $statement = $this->db->prepare("UPDATE $this->table SET name = :name, email = :email, telefon = :telefon, ausleihdatum = :ausleihdatum, fk_mitgliedstatus = :mitgliedstatus, fk_video = :video");
         $statement->bindParam(':name', $this->name);
         $statement->bindParam(':email', $this->email);
         $statement->bindParam(':telefon', $this->phone);
-        $statement->bindParam(':ausleihstatus', $this->borrowstate);
+        $statement->bindParam(':ausleihdatum', $this->borrowdate);
         $statement->bindParam(':mitgliedstatus', $this->membershipid);
         $statement->bindParam(':video', $this->videoid);
         $statement->execute();
     }
 
-    public function getBorrowById($id) : Borrow
+    public function getBorrowById($id): Borrow
     {
         $borrows = $this->getAllBorrows();
         $borrow = new Borrow;
 
-        foreach($borrow as $b)
-        {
-            if ($b['id'] == $id)
-            {
-                $borrow->id = $b['id'];
+        foreach ($borrows as $b) {
+            if ($b['ausleihid'] == $id) {
+                $borrow->id = $b['ausleihid'];
                 $borrow->name = $b['name'];
+                $borrow->email = $b['email'];
                 $borrow->phone = $b['telefon'];
                 $borrow->video = $b['title'];
                 $borrow->membership = $b['mitgliedschaft'];
-                $borrow->borrowdate = $b['ausleihdatum'];
+                $borrow->borrowdate = date_create($b['ausleihdatum'])->format('y-m-d H:i:s');
             }
         }
 
