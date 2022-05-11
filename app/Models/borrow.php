@@ -4,7 +4,7 @@ class Borrow
 {
     //private members
     private string $table = 'ausleihe';
-
+    private Membership $member;
     //properties
     public PDO $db;
     public int $id = 0;
@@ -16,11 +16,13 @@ class Borrow
     public string $membership = '';
     public int $membershipid = 0;
     public bool $borrowstate = false;
+    public string $borrowdate = '';
 
     //constructors
     public function __construct()
     {
         $this->db = db('videothek');
+        $this->member = new Membership();
     }
 
     //functions
@@ -34,10 +36,15 @@ class Borrow
 
     public function createBorrow(): void
     {
-        $statement = $this->db->prepare("INSERT INTO $this->table (name, email, telefon) VALUES (:name :email :telefon;)");
+        $statement = $this->db->prepare("INSERT INTO ausleihe (name, email, telefon, fk_video, fk_mitgliedstatus) VALUES (:name, :email, :telefon, :video, :mitgliedstatus);");
+        $this->membershipid = reset($this->member->getMemberShip($this->membership))['id'];
         $statement->bindParam(':name', $this->name);
         $statement->bindParam(':email', $this->email);
         $statement->bindParam(':telefon', $this->phone);
+        //$statement->bindParam(':ausleihdatum', $this->borrowdate);
+        //To Do: get Membership that you have the membership id.
+        $statement->bindParam(':video', $this->videoid);
+        $statement->bindParam(':mitgliedstatus', $this->membershipid);
         $statement->execute();
     }
 

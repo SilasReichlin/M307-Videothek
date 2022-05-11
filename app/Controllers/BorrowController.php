@@ -1,17 +1,26 @@
 <?php
 include 'app/Models/Borrow.php';
+include 'app/Models/movie.php';
+include 'app/Models/membership.php';
 
 class BorrowController
 {
     private Borrow $borrow;
+    private Movie $movie;
+    private Membership $membership;
 
     public function __construct()
     {
         $this->borrow = new Borrow();
+        $this->movie = new Movie();
+        $this->membership = new Membership();
     }
 
     public function index()
     {
+        $this->borrow = new Borrow();
+        $this->movie = new Movie();
+        $this->membership = new Membership();
         $borrows = $this->borrow->getAllBorrows();
         $borrow = $this->borrow;
         require 'app/Views/borrow.view.php';
@@ -29,26 +38,26 @@ class BorrowController
             $this->borrow->email = trim(htmlspecialchars($_POST['email']));
             $this->borrow->phone = htmlspecialchars($_POST['telefon']);
             $this->borrow->video = htmlspecialchars($_POST['video']);
-            $this->borrow->membership = htmlspecialchars($_POST['status']);
-
-            $errors = [];
+            $this->borrow->membership = trim(htmlspecialchars($_POST['status']));
+            //$this->borrow->borrowdate = trim(htmlspecialchars($_POST['ausleihdatum']));
+            $this->borrow->borrowstate = false;
             $errors = $this->ValidateBorrow();
 
-            if (count($errors) == 0) {
+            if (empty($errors) == 0) {
                 $this->borrow->createBorrow();
             } else {
                 require 'app/Views/createborrow.view.php';
             }
         }
 
-        require 'app/Views/borrow.view.php';
+        header('Location: borrow');
     }
 
     public function edit(): void
     {
         $borrow = new Borrow();
         $borrow = $borrow->getBorrowById($_GET['id']);
-        require 'app/Views/borrow.view.php';
+        require 'app/Views/createborrow.view.php';
     }
 
     public function update(): void
@@ -73,17 +82,30 @@ class BorrowController
     {
         $errors = [];
 
-        if (strlen($this->borrow->name) < 1) {
-            $errors[] = "Name muss mindestens zwei Zeichen beinhalten.";
+        if (strlen($this->borrow->name) > 1) {
+            array_push($errors, "Name muss mindestens zwei Zeichen beinhalten.");
         }
         if (preg_replace("/[^\+\-(\)\  0-9]/", '', $this->borrow->phone) != $this->borrow->phone) {
-            $errors[] = "Invalide Telefonnummer";
+            array_push($errors, "Invalide Telefonnummer");
         }
         if (!filter_var($this->borrow->email, FILTER_VALIDATE_EMAIL)) {
-            $errors[] = "Invalide Email";
+            array_push($errors, "Invalide Email");
         }
-        if (!is_numeric($this->borrow->movieid < 1)) {
-            $errors[] = "Invalider Film";
+
+        $movie = $this->movie->getMovie($this->borrow->video);
+
+        if (empty($movie)) {
+            array_push($errors, "Film existiert nicht.");
+        } else {
+            $this->borrow->videoid = reset($this->movie->getMovie($this->borrow->video))['id'];
+        }
+
+        $membership = $this->membership->getMemberShip($this->borrow->membership);
+
+        if (empty($membership)) {
+            array_push($errors, "Membership existiert nicht.");
+        } else {
+            $this->borrow->membershipid = reset($this->membership->getMemberShip($this->borrow->membership))['id'];
         }
 
         return $errors;
