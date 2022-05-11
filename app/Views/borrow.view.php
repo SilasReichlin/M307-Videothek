@@ -9,11 +9,10 @@
 </head>
 
 <body>
-    <div class="container_contend">
-        <?php
+<?php
         include 'app/Views/nav.view.php';
         ?>
-
+    <div class="container_contend">
         <table>
             <thead>
                 <tr>
@@ -32,10 +31,10 @@
                         ?>
                         <tr>
                             <td><?php echo $data['title'] ?? ''; ?></td>
-                            <td><?php echo $data['gesamtausleihetage'] ?? ''; ?></td>
+                            <td><?php echo $data['gesamtausleihtage'] ?? ''; ?></td>
                             <td><?php echo $data['name'] ?? ''; ?></td>
                             <td><?php echo $data['email'] ?? ''; ?></td>
-                            <td><?php $status ?></td>
+                            <td><?php echo $status ?></td>
                             <td>
                                 <a href="./edit?id=<?= $data['ausleihid'] ?? ''; ?>">
                                     <button type="button" class="b-button">Bearbeiten</button>

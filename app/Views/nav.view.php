@@ -9,19 +9,17 @@
 </head>
 
 <body>
-    <fieldset>
         <nav class="flexnavigation-container">
-            <h1 class="navtitel">Neue Ausleihe erfassen</h1>
+            <h1 class="navtitel">Videothek Verwaltung</h1>
                 <ul class="flexbuttonsnav-container">
                     <li>
-                        <a class="buttonnav" href="app/Views/borrow.view.php">Haupt</a>
+                        <a class="buttonnav" href="borrow">Home</a>
                     </li>
                     <li>
-                        <a class="buttonnav" href="app/Views/createborrow.view.php">Neue Ausleihe</a>
+                        <a class="buttonnav" href="createborrow">Neue Ausleihe</a>
                     </li>
                     </ul>
                     </nav>
-    </fieldset>
 </body>
 
 </html>
