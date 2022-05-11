@@ -17,6 +17,7 @@ class Borrow
     public int $membershipid = 0;
     public bool $borrowstate = false;
     public string $borrowdate = '';
+    public string $returnborrowdate = '';
 
     //constructors
     public function __construct()
@@ -36,14 +37,19 @@ class Borrow
 
     public function createBorrow(): void
     {
-        $statement = $this->db->prepare("INSERT INTO ausleihe (name, email, telefon, fk_video, fk_mitgliedstatus) VALUES (:name, :email, :telefon, :video, :mitgliedstatus);");
+        $statement = $this->db->prepare("INSERT INTO ausleihe (name, email, telefon, fk_video, fk_mitgliedstatus, ausleihdatum, rueckgabedatum) VALUES (:name, :email, :telefon, :video, :mitgliedstatus, :ausleihdatum, :rueckgabedatum);");
         $this->membershipid = reset($this->member->getMemberShip($this->membership))['id'];
+        $this->member->extraborrowdays = reset($this->member->getMemberShip($this->membership))['ausleihtage'];
+        $date = new DateTime($this->borrowdate);
+        $days = $this->member->extraborrowdays;
+        $date = strtotime($date . "+ $days days");
         $statement->bindParam(':name', $this->name);
         $statement->bindParam(':email', $this->email);
         $statement->bindParam(':telefon', $this->phone);
-        $statement->bindParam(':ausleihdatum', $this->borrowdate);
         $statement->bindParam(':video', $this->videoid);
         $statement->bindParam(':mitgliedstatus', $this->membershipid);
+        $statement->bindParam(':ausleihdatum', $this->borrowdate);
+        $statement->bindParam(':rueckgabedatum', $date);
         $statement->execute();
     }
 

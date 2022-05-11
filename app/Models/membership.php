@@ -19,7 +19,9 @@ class Membership
         $statement->bindParam(':mitgliedschaft', $membership);
         $statement->execute();
 
-        return $statement->fetchAll();
+        $memberships = $statement->fetchAll();
+
+        return $memberships;
     }
 }
 

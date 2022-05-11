@@ -85,9 +85,7 @@ class BorrowController
         if (strlen($this->borrow->name) > 1) {
             array_push($errors, "Name muss mindestens zwei Zeichen beinhalten.");
         }
-        if (preg_replace("/[^\+\-(\)\  0-9]/", '', $this->borrow->phone) != $this->borrow->phone) {
-            array_push($errors, "Invalide Telefonnummer");
-        }
+
         if (!filter_var($this->borrow->email, FILTER_VALIDATE_EMAIL)) {
             array_push($errors, "Invalide Email");
         }
