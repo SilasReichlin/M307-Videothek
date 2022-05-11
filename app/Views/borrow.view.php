@@ -18,11 +18,12 @@
                     <th>Name</th>
                     <th>email</th>
                     <th>Status</th>
+                    <th>Bearbeiten</th>
             </thead>
             <tbody>
-            <div>
-                <?php foreach ($borrows as $data) { ?>
-                   
+                <div>
+                    <?php foreach ($borrows as $data) { ?>
+
 
                         <tr>
                             <td><?php echo $data['title'] ?? ''; ?></td>
@@ -30,9 +31,12 @@
                             <td><?php echo $data['name'] ?? ''; ?></td>
                             <td><?php echo $data['email'] ?? ''; ?></td>
                             <td><?php echo $data['ausleihstatus'] ?? ''; ?></td>
-
+                            <td>
+                                <a href="./edit?id=<?= $data['id'] ?? ''; ?>">
+                                <button type="button" class="b-button">Bearbeiten</button>
+                            </td>
                         </tr>
-                <?php } ?>
+                    <?php } ?>
                 </div>
             </tbody>
         </table>

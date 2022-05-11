@@ -9,13 +9,14 @@
 </head>
 
 <body>
+    <!--
     <div class="container_contend">
-
+    <div class="form-style-5">
         <fieldset>
             <legend>Ausleihe erfassen</legend>
-            <!-- ?id= $borrow['id'] ?? '' mit php tag-->
+            <!-- ?id= $borrow['id'] ?? '' mit php tag--
             <form action="create" method="POST">
-                <div class="form-group">
+                <div class="input-field">
                     <label for="name">Name:</label>
                     <input type="text" name="name" required><br>
                     <div class="form-group">
@@ -42,6 +43,26 @@
                     <input type="submit">
             </form>
         </fieldset>
+    </div>
+    </div>
+-->
+
+    <div class="form-style-2">
+        <div class="form-style-2-heading">Neue Ausleihe erfassen</div>
+        <form action="" method="post">
+            <label for="name"><span>Name <span class="required">*</span></span><input type="text" class="input-field" name="name" value="" required /></label>
+            <label for="email"><span>Email <span class="required">*</span></span><input type="text" class="input-field" name="email" value="" required /></label>
+            <label for="date"><span>Datum <span class="required">*</span></span><input type="date" class="input-field" name="date" value="" required /></label>
+            <label><span>Telephone</span><input type="text" class="input-field" name="telefon" value="" /></label>
+            <label for="status"><span>Status<span class="required">*</span></span><select name="status" class="select-field" required>
+                    <option value="none">Keiner</option>
+                    <option value="bronze">Bronze</option>
+                    <option value="silver">Silber</option>
+                    <option value="gold">Gold</option>
+                </select></label>
+            <label for="video"><span>Ausgeleihtes Video<span class="required">*</span></span><select name="video" class="select-field" required></label><br>
+                 <div class= "form-group">  <input type="submit" value="Submit" /></div>
+        </form>
     </div>
 </body>
 
