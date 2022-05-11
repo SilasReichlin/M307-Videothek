@@ -37,7 +37,7 @@
                             <td><?php echo $data['email'] ?? ''; ?></td>
                             <td><?php $status ?></td>
                             <td>
-                                <a href="./edit?id=<?= $data['id'] ?? ''; ?>">
+                                <a href="./edit?id=<?= $data['ausleihid'] ?? ''; ?>">
                                     <button type="button" class="b-button">Bearbeiten</button>
                             </td>
                         </tr>
