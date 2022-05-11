@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="de">
 
@@ -9,18 +8,20 @@
     <link rel="stylesheet" href="public/css/app.css">
 </head>
 
-<fieldset>
-    <legend>Neue Ausleihe</legend>
-    <navclass="flexnavigation-container">
-        <h1class="navtitel">Neue Ausleihe erfassen</h1>
-            <ulclass="flexbuttonsnav-container">
-                <li>
-                    <a class="buttonnav"href=".. /Views/borrow.view.php">Haupt</a>
-                </li>
-                <li>
-                    <a class="buttonnav"href=".. /Views/createborrow.view.php">Neue Ausleihe</a>
-                </li>
-                </ul>
-                </nav>
-</fieldset>
+<body>
+    <fieldset>
+        <nav class="flexnavigation-container">
+            <h1 class="navtitel">Neue Ausleihe erfassen</h1>
+                <ul class="flexbuttonsnav-container">
+                    <li>
+                        <a class="buttonnav" href="app/Views/borrow.view.php">Haupt</a>
+                    </li>
+                    <li>
+                        <a class="buttonnav" href="app/Views/createborrow.view.php">Neue Ausleihe</a>
+                    </li>
+                    </ul>
+                    </nav>
+    </fieldset>
+</body>
+
 </html>

@@ -147,7 +147,7 @@ tr:hover {
 .form-style-2 input[type=button] {
 	border: none;
 	padding: 8px 15px 8px 15px;
-	background: #FF8500;
+	background: #373ea4;
 	color: #fff;
 	box-shadow: 1px 1px 4px #DADADA;
 	-moz-box-shadow: 1px 1px 4px #DADADA;
@@ -159,7 +159,7 @@ tr:hover {
 
 .form-style-2 input[type=submit]:hover,
 .form-style-2 input[type=button]:hover {
-	background: #EA7B00;
+	background: #5e65ce;
 	color: #fff;
 }
 
@@ -177,7 +177,7 @@ li {
 	flex-direction: row;
 	border: 1px solid black;
 	color: #ffffff;
-	background-color: rgb(140, 58, 207);
+	background-color: #373ea4;
 	align-items: center;
 }
 
@@ -199,7 +199,7 @@ li {
 	color: #ffffff !important;
 	text-transform: uppercase;
 	text-decoration: none;
-	background: rgb(140, 58, 207);
+	background: #373ea4;
 	padding: 10px;
 	border: 2px solid #ffffff !important;
 	display: inline-block;
@@ -208,8 +208,8 @@ li {
 
 .buttonnav:hover {
 	color: #ffffff !important;
-	background: #8431e2;
-	border-color: #8431e2 !important;
+	background: #373ea4;
+	border-color: #373ea4 !important;
 	transition: all 0.4s ease 0s;
 
 }
