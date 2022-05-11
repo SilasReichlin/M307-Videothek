@@ -9,9 +9,9 @@
 </head>
 
 <body>
-<?php
-        include 'app/Views/nav.view.php';
-        ?>
+    <?php
+    include 'app/Views/nav.view.php';
+    ?>
     <div class="container_contend">
         <table>
             <thead>

@@ -6,7 +6,8 @@ $routes = [
 	'/borrow' => 'BorrowController@index',
 	'/createborrow' => 'BorrowController@new',
 	'/create' => 'BorrowController@create',
-	'/edit' => 'BorrowController@edit'
+	'/edit' => 'BorrowController@edit',
+	'/upsert' => 'BorrowController@upsert',
 ];
 
 $db = [

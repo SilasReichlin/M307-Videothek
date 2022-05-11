@@ -54,7 +54,7 @@ class Borrow
 
     public function updateBorrow(): void
     {
-        $statement = $this->db->prepare("UPDATE $this->table SET name = :name, email = :email, telefon = :telefon, ausleihdatum = :ausleihdatum, fk_mitgliedstatus = :mitgliedstatus, fk_video = :video");
+        $statement = $this->db->prepare("UPDATE ausleihe SET name = :name, email = :email, telefon = :telefon, ausleihdatum = :ausleihdatum, fk_mitgliedstatus = :mitgliedstatus, fk_video = :video WHERE id = $this->id");
         $statement->bindParam(':name', $this->name);
         $statement->bindParam(':email', $this->email);
         $statement->bindParam(':telefon', $this->phone);

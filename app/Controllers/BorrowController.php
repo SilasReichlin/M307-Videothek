@@ -57,6 +57,7 @@ class BorrowController
     {
         $borrow = new Borrow();
         $borrow = $borrow->getBorrowById($_GET['id']);
+        $borrow->borrowdate = date_create($borrow->borrowdate)->format('Y-m-d');
         require 'app/Views/createborrow.view.php';
     }
 
@@ -64,7 +65,8 @@ class BorrowController
     public function upsert(): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if ($_POST['id'] != '') {
+            if ($_GET['id'] != '') {
+                $this->borrow->id = $_GET['id'];
                 $this->borrow->name = trim(htmlspecialchars($_POST['name']));
                 $this->borrow->email = trim(htmlspecialchars($_POST['email']));
                 $this->borrow->phone = htmlspecialchars($_POST['telefon']);
@@ -75,8 +77,10 @@ class BorrowController
 
                 if (count($errors) == 0) {
                     $this->borrow->updateBorrow();
+                    header('Location: borrow');
                 } else {
-                    require 'app/Views/borrow.view.php';
+                    $borrow = $this->borrow;
+                    require 'app/Views/createborrow.view.php';
                 }
             } else {
                 $this->borrow->name = trim(htmlspecialchars($_POST['name']));
@@ -90,13 +94,12 @@ class BorrowController
 
                 if (empty($errors) == 0) {
                     $this->borrow->createBorrow();
+                    header('Location: borrow');
                 } else {
                     require 'app/Views/createborrow.view.php';
                 }
             }
-        }
-
-        header('Location: borrow');
+        }      
     }
 
     public function update(): void
@@ -121,12 +124,17 @@ class BorrowController
     {
         $errors = [];
 
-        if (strlen($this->borrow->name) > 1) {
-            array_push($errors, "Name muss mindestens zwei Zeichen beinhalten.");
+        if (strlen($this->borrow->name) < 1) {
+            array_push($errors, "Name muss mindestens 1 Zeichen beinhalten.");
         }
 
         if (!filter_var($this->borrow->email, FILTER_VALIDATE_EMAIL)) {
             array_push($errors, "Invalide Email");
+        }
+
+        if(!is_numeric($this->borrow->phone))
+        {
+            array_push($errors, "Invalide Telefon Nummer");
         }
 
         $movie = $this->movie->getMovie($this->borrow->video);
