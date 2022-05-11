@@ -8,7 +8,7 @@ class Movie
 
     public function __construct()
     {
-        $this->db = db('movies');
+        $this->db = db('videothek');
     }
 
     public function getMovie(string $title): array

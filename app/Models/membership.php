@@ -10,7 +10,7 @@ class Membership
 
        public function __construct()
     {
-        $this->db = db('mitgliedstatus');
+        $this->db = db('videothek');
     }
 
     public function getMemberShip(string $membership) : array
@@ -19,9 +19,7 @@ class Membership
         $statement->bindParam(':mitgliedschaft', $membership);
         $statement->execute();
 
-        $memberships = $statement->fetchAll();
-
-        return $memberships;
+        return $statement->fetchAll();
     }
 }
 

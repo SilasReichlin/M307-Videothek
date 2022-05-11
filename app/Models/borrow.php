@@ -39,10 +39,11 @@ class Borrow
     {
         $statement = $this->db->prepare("INSERT INTO ausleihe (name, email, telefon, fk_video, fk_mitgliedstatus, ausleihdatum, rueckgabedatum) VALUES (:name, :email, :telefon, :video, :mitgliedstatus, :ausleihdatum, :rueckgabedatum);");
         $this->membershipid = reset($this->member->getMemberShip($this->membership))['id'];
-        $this->member->extraborrowdays = reset($this->member->getMemberShip($this->membership))['ausleihtage'];
+        $this->member->fullbyorrowdays = reset($this->member->getMemberShip($this->membership))['gesamtausleihtage'];
         $date = new DateTime($this->borrowdate);
-        $days = $this->member->extraborrowdays;
-        $date = strtotime($date . "+ $days days");
+        $days = $this->member->fullbyorrowdays;
+        $date = date_add($date, date_interval_create_from_date_string("$days days"));
+        $date = date_create()->format('Y-m-d H:i:s');
         $statement->bindParam(':name', $this->name);
         $statement->bindParam(':email', $this->email);
         $statement->bindParam(':telefon', $this->phone);
