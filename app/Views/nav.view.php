@@ -15,10 +15,10 @@
         <h1class="navtitel">Neue Ausleihe erfassen</h1>
             <ulclass="flexbuttonsnav-container">
                 <li>
-                    <aclass="buttonnav"href=".. /Views/borrow.view.php">Haupt</a>
+                    <a class="buttonnav"href=".. /Views/borrow.view.php">Haupt</a>
                 </li>
                 <li>
-                    <aclass="buttonnav"href=".. /Views/createborrow.view.php">Neue Ausleihe</a>
+                    <a class="buttonnav"href=".. /Views/createborrow.view.php">Neue Ausleihe</a>
                 </li>
                 </ul>
                 </nav>

@@ -28,7 +28,6 @@
                 <div>
                     <?php foreach ($borrows as $data) { ?>
 
-
                         <tr>
                             <td><?php echo $data['title'] ?? ''; ?></td>
                             <td><?php echo $data['gesamtausleihetage'] ?? ''; ?></td>
