@@ -96,6 +96,7 @@ class BorrowController
                     $this->borrow->createBorrow();
                     header('Location: borrow');
                 } else {
+                    $borrow = $this->borrow;
                     require 'app/Views/createborrow.view.php';
                 }
             }

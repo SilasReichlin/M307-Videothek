@@ -5,7 +5,7 @@ $routes = [
 	'/hallo/welt' => 'WelcomeController@index',
 	'/borrow' => 'BorrowController@index',
 	'/createborrow' => 'BorrowController@new',
-	'/create' => 'BorrowController@create',
+	'/create' => 'BorrowController@upsert',
 	'/edit' => 'BorrowController@edit',
 	'/upsert' => 'BorrowController@upsert',
 ];
