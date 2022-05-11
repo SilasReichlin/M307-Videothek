@@ -34,7 +34,8 @@ function db($table): PDO
     }
 
     try { /* 'mysql:host=localhost;dbname=kurseictbz_30701', 'kurseictbz_30701', 'db_307_pw_01', */
-        $dbInstance = new PDO('mysql:host=localhost;dbname=videothek', 'root', '', [
+        //mysql:host=localhost;dbname=videothek', 'root', '',
+        $dbInstance = new PDO('mysql:host=localhost;dbname=kurseictbz_30701', 'kurseictbz_30701', 'db_307_pw_01', [
             PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
             PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
         ]);
