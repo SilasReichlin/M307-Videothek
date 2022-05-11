@@ -52,7 +52,7 @@ class BorrowController
 
         header('Location: borrow');
     }
-
+    
     public function edit(): void
     {
         $borrow = new Borrow();
@@ -71,7 +71,8 @@ class BorrowController
                 $this->borrow->email = trim(htmlspecialchars($_POST['email']));
                 $this->borrow->phone = htmlspecialchars($_POST['telefon']);
                 $this->borrow->video = htmlspecialchars($_POST['video']);
-                $errors = [];
+                $this->borrow->membership = trim(htmlspecialchars($_POST['status']));
+                $this->borrow->borrowdate = htmlspecialchars($_POST['date']);
                 $errors = $this->ValidateBorrow();
     
                 if (count($errors) == 0) {
@@ -98,6 +99,8 @@ class BorrowController
                 }
             }
         }
+
+        header('Location: borrow');
     }
 
     public function update(): void
