@@ -9,17 +9,17 @@
 </head>
 
 <body>
-        <nav class="flexnavigation-container">
-            <h1 class="navtitel">Videothek Verwaltung</h1>
-                <ul class="flexbuttonsnav-container">
-                    <li>
-                        <a class="buttonnav" href="borrow">Home</a>
-                    </li>
-                    <li>
-                        <a class="buttonnav" href="createborrow">Neue Ausleihe</a>
-                    </li>
-                    </ul>
-                    </nav>
+    <nav class="flexnavigation-container">
+        <h1 class="navtitel">Videothek Verwaltung</h1>
+        <ul class="flexbuttonsnav-container">
+            <li>
+                <a class="buttonnav" href="borrow">Home</a>
+            </li>
+            <li>
+                <a class="buttonnav" href="createborrow">Neue Ausleihe</a>
+            </li>
+        </ul>
+    </nav>
 </body>
 
 </html>

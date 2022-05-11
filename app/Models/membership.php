@@ -22,5 +22,3 @@ class Membership
         return $statement->fetchAll();
     }
 }
-
-?>
