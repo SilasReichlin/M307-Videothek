@@ -28,30 +28,10 @@ class BorrowController
 
     public function new(): void
     {
+        $borrow = new Borrow();
         require 'app/Views/createborrow.view.php';
     }
 
-    public function create(): void
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $this->borrow->name = trim(htmlspecialchars($_POST['name']));
-            $this->borrow->email = trim(htmlspecialchars($_POST['email']));
-            $this->borrow->phone = htmlspecialchars($_POST['telefon']);
-            $this->borrow->video = htmlspecialchars($_POST['video']);
-            $this->borrow->membership = trim(htmlspecialchars($_POST['status']));
-            $this->borrow->borrowdate = htmlspecialchars($_POST['date']);
-            $this->borrow->borrowstate = false;
-            $errors = $this->ValidateBorrow();
-
-            if (empty($errors) == 0) {
-                $this->borrow->createBorrow();
-            } else {
-                require 'app/Views/createborrow.view.php';
-            }
-        }
-
-        header('Location: borrow');
-    }
 
     public function edit(): void
     {
@@ -65,11 +45,10 @@ class BorrowController
     public function upsert(): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if ($_GET['id'] != '') {
+            if ($_GET['id'] != '' && $_GET['id'] != '0') {
                 $this->borrow->id = $_GET['id'];
                 $this->borrow->name = trim(htmlspecialchars($_POST['name']));
                 $this->borrow->email = trim(htmlspecialchars($_POST['email']));
-                $this->borrow->phone = htmlspecialchars($_POST['telefon']);
                 $this->borrow->video = htmlspecialchars($_POST['video']);
                 $this->borrow->membership = trim(htmlspecialchars($_POST['status']));
                 $this->borrow->borrowdate = htmlspecialchars($_POST['date']);
@@ -85,38 +64,19 @@ class BorrowController
             } else {
                 $this->borrow->name = trim(htmlspecialchars($_POST['name']));
                 $this->borrow->email = trim(htmlspecialchars($_POST['email']));
-                $this->borrow->phone = htmlspecialchars($_POST['telefon']);
                 $this->borrow->video = htmlspecialchars($_POST['video']);
                 $this->borrow->membership = trim(htmlspecialchars($_POST['status']));
                 $this->borrow->borrowdate = htmlspecialchars($_POST['date']);
                 $this->borrow->borrowstate = false;
                 $errors = $this->ValidateBorrow();
 
-                if (empty($errors) == 0) {
+                if (count($errors) == 0) {
                     $this->borrow->createBorrow();
                     header('Location: borrow');
                 } else {
                     $borrow = $this->borrow;
                     require 'app/Views/createborrow.view.php';
                 }
-            }
-        }
-    }
-
-    public function update(): void
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['id'] != '') {
-            $this->borrow->name = trim(htmlspecialchars($_POST['name']));
-            $this->borrow->email = trim(htmlspecialchars($_POST['email']));
-            $this->borrow->phone = htmlspecialchars($_POST['telefon']);
-            $this->borrow->video = htmlspecialchars($_POST['video']);
-            $errors = [];
-            $errors = $this->ValidateBorrow();
-
-            if (count($errors) == 0) {
-                $this->borrow->updateBorrow();
-            } else {
-                require 'app/Views/borrow.view.php';
             }
         }
     }
@@ -131,10 +91,6 @@ class BorrowController
 
         if (!filter_var($this->borrow->email, FILTER_VALIDATE_EMAIL)) {
             array_push($errors, "Invalide Email");
-        }
-
-        if (!is_numeric($this->borrow->phone)) {
-            array_push($errors, "Invalide Telefon Nummer");
         }
 
         $movie = $this->movie->getMovie($this->borrow->video);
