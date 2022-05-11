@@ -28,7 +28,7 @@
                 <div>
                     <?php foreach ($borrows as $data) { ?>
                         <?php
-                        $status = ($data->returnDate >= date("Y-m-d") ? '😁' : '😠');
+                        $status = ($data['returnDate'] >= date("Y-m-d") ? '😁' : '😠');
                         ?>
                         <tr>
                             <td><?php echo $data['title'] ?? ''; ?></td>
