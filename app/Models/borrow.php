@@ -29,7 +29,7 @@ class Borrow
     //functions
     public function getAllBorrows(): array
     {
-        $statement = $this->db->prepare("SELECT ausleihe.id AS 'ausleihid', ausleihe.name, ausleihe.email, ausleihe.telefon, ausleihe.ausleihstatus, ausleihe.fk_video, mitgliedstatus.mitgliedschaft, mitgliedstatus.gesamtausleihtage as 'gesamtausleihtage', ausleihe.rueckgabedatum as 'returnDate', movies.title as 'title', ausleihe.ausleihdatum, ausleihe.rueckgabedatum FROM ausleihe, movies, mitgliedstatus WHERE ausleihe.fk_video = movies.id AND ausleihe.fk_mitgliedstatus = mitgliedstatus.id;");
+        $statement = $this->db->prepare("SELECT ausleihe.id AS 'ausleihid', ausleihe.name, ausleihe.email, ausleihe.telefon, ausleihe.ausleihstatus, ausleihe.fk_video, mitgliedstatus.mitgliedschaft as 'mitgliedschaft', mitgliedstatus.gesamtausleihtage as 'gesamtausleihtage', ausleihe.rueckgabedatum as 'returnDate', movies.title as 'title', ausleihe.ausleihdatum as 'ausleihdatum', ausleihe.rueckgabedatum FROM ausleihe, movies, mitgliedstatus WHERE ausleihe.fk_video = movies.id AND ausleihe.fk_mitgliedstatus = mitgliedstatus.id;");
         $statement->execute();
 
         return $statement->fetchAll();
@@ -64,24 +64,24 @@ class Borrow
         $statement->execute();
     }
 
-    public function getBorrowById(int $id): Borrow
+    public function getBorrowById($id) : Borrow
     {
-        $borrows = $this->borrow->getAllBorrows();
-        $searchedborrow = new Borrow;
-        foreach ($borrows as $b) {
-            if ($b['id'] == $id) {
-                $searchedborrow->id = $b['id'];
-                $searchedborrow->name = $b['name'] ?? '';
-                $searchedborrow->email = $b['email'] ?? '';
-                $searchedborrow->phone = $b['telefon'] ?? '';
-                $searchedborrow->video = $b['title'] ?? '';
-                $searchedborrow->membership = $b['mitgliedstatus'] ?? '';
-                $searchedborrow->borrowstate = $b['date'] ?? '';
-                $searchedborrow->videoid = $b['fk_video'] ?? '';
-                break;
+        $borrows = $this->getAllBorrows();
+        $borrow = new Borrow;
+
+        foreach($borrow as $b)
+        {
+            if ($b['id'] == $id)
+            {
+                $borrow->id = $b['id'];
+                $borrow->name = $b['name'];
+                $borrow->phone = $b['telefon'];
+                $borrow->video = $b['title'];
+                $borrow->membership = $b['mitgliedschaft'];
+                $borrow->borrowdate = $b['ausleihdatum'];
             }
         }
 
-        return $searchedborrow;
+        return $borrow;
     }
 }

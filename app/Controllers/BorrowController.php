@@ -52,11 +52,11 @@ class BorrowController
 
         header('Location: borrow');
     }
-    
+
     public function edit(): void
     {
         $borrow = new Borrow();
-        $borrow = 
+        $borrow = $borrow->getBorrowById($_GET['id']);
         require 'app/Views/createborrow.view.php';
     }
 
