@@ -7,46 +7,6 @@
     <base href="<?= ROOT_URL ?>/">
     <link rel="stylesheet" href="public/css/app.css">
 </head>
-
-<body>
-    <!--
-    <div class="container_contend">
-    <div class="form-style-5">
-        <fieldset>
-            <legend>Ausleihe erfassen</legend>
-            <!-- ?id= $borrow['id'] ?? '' mit php tag--
-            <form action="create" method="POST">
-                <div class="input-field">
-                    <label for="name">Name:</label>
-                    <input type="text" name="name" required><br>
-                    <div class="form-group">
-                        <label for="name">E-mail Adresse:</label>
-                        <input type="email" name="email" required><br>
-                    </div>
-                    <div class="form-group">
-                        <label for="name">Telefon:</label>
-                        <input type="tel" name="telefon" required><br>
-                    </div>
-                    <div class="form-group">
-                        <label for="name">Mitglied-Status:</label>
-                        <select name="status" id="status">
-                            <option value="none">Keiner</option>
-                            <option value="bronze">Bronze</option>
-                            <option value="silver">Silber</option>
-                            <option value="gold">Gold</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="name">Ausgeleihtes Video:</label>
-                        <input type="text" name="video" required><br>
-                    </div>
-                    <input type="submit">
-            </form>
-        </fieldset>
-    </div>
-    </div>
--->
-
     <div class="form-style-2">
         <div class="form-style-2-heading">Neue Ausleihe erfassen</div>
         <form action="upsert" method="post">
@@ -60,7 +20,7 @@
                     <option value="<?php echo $borrow->Silber ?? ''; ?>">Silber</option>
                     <option value="<?php echo $borrow->Gold ?? ''; ?>">Gold</option>
                 </select></label>
-            <label for="video"><span>Ausgeleihtes Video <span class="required">*</span></span><input type="video" class="input-field" name="video" value="" required /></label>
+            <label for="video"><span>Ausgeleihtes Video <span class="required">*</span></span><input type="video" class="input-field" name="video" value="<?php echo $borrow->video ?? ''; ?>" required /></label>
             <div class="form-group"> <input type="submit" value="Submit" /></div>
 
         </form>
