@@ -11,9 +11,9 @@
 <body>
     <div class="container_contend">
         <?php
-        include'app/Views/nav.view.php';
+        include 'app/Views/nav.view.php';
         ?>
-        
+
         <table>
             <thead>
                 <tr>
@@ -27,13 +27,15 @@
             <tbody>
                 <div>
                     <?php foreach ($borrows as $data) { ?>
-
+                        <?php
+                        $status = ($data->returnDate >= date("Y-m-d") ? '😁' : '😠');
+                        ?>
                         <tr>
                             <td><?php echo $data['title'] ?? ''; ?></td>
                             <td><?php echo $data['gesamtausleihetage'] ?? ''; ?></td>
                             <td><?php echo $data['name'] ?? ''; ?></td>
                             <td><?php echo $data['email'] ?? ''; ?></td>
-                            <td><?php echo $data['ausleihstatus'] ?? ''; ?></td>
+                            <td><?php $status ?></td>
                             <td>
                                 <a href="./edit?id=<?= $data['id'] ?? ''; ?>">
                                     <button type="button" class="b-button">Bearbeiten</button>
