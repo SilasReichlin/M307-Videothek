@@ -29,7 +29,7 @@ class Borrow
     //functions
     public function getAllBorrows(): array
     {
-        $statement = $this->db->prepare("SELECT ausleihe.id AS 'ausleihid', ausleihe.name, ausleihe.email, ausleihe.telefon, ausleihe.ausleihstatus, ausleihe.fk_video, mitgliedstatus.mitgliedschaft, mitgliedstatus.gesamtausleihtage as 'gesamtausleihtage', ausleihe.rueckgabedatum as 'returnDate', movies.title as 'title', ausleihe.ausleihdatum, ausleihe.rueckgabedatum FROM ausleihe, movies, mitgliedstatus WHERE ausleihe.fk_video = movies.id AND ausleihe.fk_mitgliedstatus = mitgliedstatus.id;");
+        $statement = $this->db->prepare("SELECT ausleihe.id AS 'ausleihid', ausleihe.name, ausleihe.email, ausleihe.telefon, ausleihe.ausleihstatus, ausleihe.fk_video, mitgliedstatus.mitgliedschaft as 'mitgliedschaft', mitgliedstatus.gesamtausleihtage as 'gesamtausleihtage', ausleihe.rueckgabedatum as 'returnDate', movies.title as 'title', ausleihe.ausleihdatum as 'ausleihdatum', ausleihe.rueckgabedatum FROM ausleihe, movies, mitgliedstatus WHERE ausleihe.fk_video = movies.id AND ausleihe.fk_mitgliedstatus = mitgliedstatus.id;");
         $statement->execute();
 
         return $statement->fetchAll();
@@ -54,34 +54,33 @@ class Borrow
 
     public function updateBorrow(): void
     {
-        $statement = $this->db->prepare("UPDATE $this->table SET name = :name, email = :email, telefon = :telefon, ausleihstatus = :ausleihstatus, fk_mitgliedstatus = :mitgliedstatus, fk_video = :video");
+        $statement = $this->db->prepare("UPDATE $this->table SET name = :name, email = :email, telefon = :telefon, ausleihdatum = :ausleihdatum, fk_mitgliedstatus = :mitgliedstatus, fk_video = :video");
         $statement->bindParam(':name', $this->name);
         $statement->bindParam(':email', $this->email);
         $statement->bindParam(':telefon', $this->phone);
-        $statement->bindParam(':ausleihstatus', $this->borrowstate);
+        $statement->bindParam(':ausleihdatum', $this->borrowdate);
         $statement->bindParam(':mitgliedstatus', $this->membershipid);
         $statement->bindParam(':video', $this->videoid);
         $statement->execute();
     }
 
-    public function getBorrowById(int $id): Borrow
+    public function getBorrowById($id): Borrow
     {
-        $borrows = $this->borrow->getAllBorrows();
-        $searchedborrow = new Borrow;
+        $borrows = $this->getAllBorrows();
+        $borrow = new Borrow;
+
         foreach ($borrows as $b) {
-            if ($b['id'] == $id) {
-                $searchedborrow->id = $b['id'];
-                $searchedborrow->name = $b['name'] ?? '';
-                $searchedborrow->email = $b['email'] ?? '';
-                $searchedborrow->phone = $b['telefon'] ?? '';
-                $searchedborrow->video = $b['title'] ?? '';
-                $searchedborrow->membership = $b['mitgliedstatus'] ?? '';
-                $searchedborrow->borrowstate = $b['date'] ?? '';
-                $searchedborrow->videoid = $b['fk_video'] ?? '';
-                break;
+            if ($b['ausleihid'] == $id) {
+                $borrow->id = $b['ausleihid'];
+                $borrow->name = $b['name'];
+                $borrow->email = $b['email'];
+                $borrow->phone = $b['telefon'];
+                $borrow->video = $b['title'];
+                $borrow->membership = $b['mitgliedschaft'];
+                $borrow->borrowdate = date_create($b['ausleihdatum'])->format('y-m-d H:i:s');
             }
         }
 
-        return $searchedborrow;
+        return $borrow;
     }
 }

@@ -52,21 +52,19 @@ class BorrowController
 
         header('Location: borrow');
     }
-    
+
     public function edit(): void
     {
         $borrow = new Borrow();
-        $borrow = 
+        $borrow = $borrow->getBorrowById($_GET['id']);
         require 'app/Views/createborrow.view.php';
     }
 
 
     public function upsert(): void
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST')
-        {
-            if ($_POST['id'] != '')
-            {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if ($_POST['id'] != '') {
                 $this->borrow->name = trim(htmlspecialchars($_POST['name']));
                 $this->borrow->email = trim(htmlspecialchars($_POST['email']));
                 $this->borrow->phone = htmlspecialchars($_POST['telefon']);
@@ -74,15 +72,13 @@ class BorrowController
                 $this->borrow->membership = trim(htmlspecialchars($_POST['status']));
                 $this->borrow->borrowdate = htmlspecialchars($_POST['date']);
                 $errors = $this->ValidateBorrow();
-    
+
                 if (count($errors) == 0) {
                     $this->borrow->updateBorrow();
                 } else {
                     require 'app/Views/borrow.view.php';
                 }
-            }
-            else
-            {
+            } else {
                 $this->borrow->name = trim(htmlspecialchars($_POST['name']));
                 $this->borrow->email = trim(htmlspecialchars($_POST['email']));
                 $this->borrow->phone = htmlspecialchars($_POST['telefon']);
@@ -91,7 +87,7 @@ class BorrowController
                 $this->borrow->borrowdate = htmlspecialchars($_POST['date']);
                 $this->borrow->borrowstate = false;
                 $errors = $this->ValidateBorrow();
-    
+
                 if (empty($errors) == 0) {
                     $this->borrow->createBorrow();
                 } else {
