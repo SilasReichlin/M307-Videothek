@@ -99,7 +99,7 @@ class BorrowController
                     require 'app/Views/createborrow.view.php';
                 }
             }
-        }      
+        }
     }
 
     public function update(): void
@@ -132,8 +132,7 @@ class BorrowController
             array_push($errors, "Invalide Email");
         }
 
-        if(!is_numeric($this->borrow->phone))
-        {
+        if (!is_numeric($this->borrow->phone)) {
             array_push($errors, "Invalide Telefon Nummer");
         }
 
@@ -142,7 +141,8 @@ class BorrowController
         if (empty($movie)) {
             array_push($errors, "Film existiert nicht.");
         } else {
-            $this->borrow->videoid = reset($this->movie->getMovie($this->borrow->video))['id'];
+            $videos = $this->movie->getMovie($this->borrow->video);
+            $this->borrow->videoid = reset($videos)['id'];
         }
 
         $membership = $this->membership->getMemberShip($this->borrow->membership);
@@ -150,7 +150,8 @@ class BorrowController
         if (empty($membership)) {
             array_push($errors, "Membership existiert nicht.");
         } else {
-            $this->borrow->membershipid = reset($this->membership->getMemberShip($this->borrow->membership))['id'];
+            $memberships = $this->membership->getMemberShip($this->borrow->membership);
+            $this->borrow->membershipid = reset($memberships)['id'];
         }
 
         return $errors;
