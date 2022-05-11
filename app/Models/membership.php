@@ -4,7 +4,7 @@ class Membership
 {
     public int $extraborrowdays = 0;
     public int $id = 0;
-    public int $fullbyorrowdays = 0;
+    public int $fullborrowdays = 0;
     public string $membership = '';
     public PDO $db;
 
