@@ -46,7 +46,6 @@ class Borrow
         $statement->bindParam(':name', $this->name);
         $statement->bindParam(':email', $this->email);
         $statement->bindParam(':telefon', $this->phone);
-        $statement->bindParam(':ausleihdatum', $this->borrowdate);
         $statement->bindParam(':video', $this->videoid);
         $statement->bindParam(':mitgliedstatus', $this->membershipid);
         $statement->bindParam(':ausleihdatum', $this->borrowdate);
