@@ -18,7 +18,7 @@
         <form action="upsert?id=<?php echo $borrow->id ?? ''; ?>" method="POST">
             <label for="name"><span>Name <span class="required">*</span></span><input type="text" class="input-field" name="name" value="<?php echo $borrow->name ?? ''; ?>" required /></label>
             <label for="email"><span>Email <span class="required">*</span></span><input type="text" class="input-field" name="email" value="<?php echo $borrow->email ?? ''; ?>" required /></label>
-            <label for="date"><span>Datum <span class="required">*</span></span><input type="date" class="input-field" name="date" value="<?php echo $borrow->borrowdate ?? '';?>" required /></label>
+            <label for="date"><span>Datum <span class="required">*</span></span><input type="date" class="input-field" name="date" value="<?php echo $borrow->borrowdate ?? ''; ?>" required /></label>
             <label><span>Telephone</span><input type="text" class="input-field" name="telefon" value="<?php echo $borrow->phone ?? ''; ?>" /></label>
             <label for="status"><span>Status<span class="required">*</span></span><select name="status" class="select-field" required>
                     <option value="Keiner" <?php echo $borrow->membership == "Keiner" ? 'selected' : ''; ?>>Keiner</option>

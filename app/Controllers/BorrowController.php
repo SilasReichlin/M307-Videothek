@@ -1,5 +1,5 @@
 <?php
-include 'app/Models/Borrow.php';
+include 'app/Models/borrow.php';
 include 'app/Models/movie.php';
 include 'app/Models/membership.php';
 
