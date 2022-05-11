@@ -28,7 +28,7 @@ class Borrow
     //functions
     public function getAllBorrows(): array
     {
-        $statement = $this->db->prepare("SELECT ausleihe.name, ausleihe.email, ausleihe.telefon, ausleihe.ausleihstatus, ausleihe.fk_video, mitgliedstatus.mitgliedschaft, mitgliedstatus.gesamtausleihtage, movies.title as 'title' FROM ausleihe, movies, mitgliedstatus WHERE ausleihe.fk_video = movies.id AND ausleihe.fk_mitgliedstatus = mitgliedstatus.id;");
+        $statement = $this->db->prepare("SELECT ausleihe.name, ausleihe.email, ausleihe.telefon, ausleihe.ausleihstatus, ausleihe.fk_video, mitgliedstatus.mitgliedschaft, mitgliedstatus.gesamtausleihtage, movies.title as 'title', ausleihe.ausleihdatum, ausleihe.rueckgabedatum FROM ausleihe, movies, mitgliedstatus WHERE ausleihe.fk_video = movies.id AND ausleihe.fk_mitgliedstatus = mitgliedstatus.id;");
         $statement->execute();
 
         return $statement->fetchAll();
@@ -41,8 +41,7 @@ class Borrow
         $statement->bindParam(':name', $this->name);
         $statement->bindParam(':email', $this->email);
         $statement->bindParam(':telefon', $this->phone);
-        //$statement->bindParam(':ausleihdatum', $this->borrowdate);
-        //To Do: get Membership that you have the membership id.
+        $statement->bindParam(':ausleihdatum', $this->borrowdate);
         $statement->bindParam(':video', $this->videoid);
         $statement->bindParam(':mitgliedstatus', $this->membershipid);
         $statement->execute();
@@ -50,13 +49,13 @@ class Borrow
 
     public function updateBorrow(): void
     {
-        $statement = $this->db->prepare("UPDATE $this->table SET name = :name, email = :email, telefon = :telefon, ausleihstatus = :ausleihstatus, fk_mitgliedstatus = :fk_mitgliedstatus, fk_video = :fk_video");
+        $statement = $this->db->prepare("UPDATE $this->table SET name = :name, email = :email, telefon = :telefon, ausleihstatus = :ausleihstatus, fk_mitgliedstatus = :mitgliedstatus, fk_video = :video");
         $statement->bindParam(':name', $this->name);
         $statement->bindParam(':email', $this->email);
         $statement->bindParam(':telefon', $this->phone);
         $statement->bindParam(':ausleihstatus', $this->borrowstate);
-        $statement->bindParam(':fk_mitgliedstatus', $this->membershipid);
-        $statement->bindParam(':fk_video', $this->videoid);
+        $statement->bindParam(':mitgliedstatus', $this->membershipid);
+        $statement->bindParam(':video', $this->videoid);
         $statement->execute();
     }
 
@@ -72,7 +71,7 @@ class Borrow
                 $searchedborrow->phone = $b['telefon'] ?? '';
                 $searchedborrow->video = $b['title'] ?? '';
                 $searchedborrow->membership = $b['mitgliedstatus'] ?? '';
-                $searchedborrow->borrowstate = $b['ausleihstatus'] ?? '';
+                $searchedborrow->borrowstate = $b['date'] ?? '';
                 $searchedborrow->videoid = $b['fk_video'] ?? '';
                 break;
             }

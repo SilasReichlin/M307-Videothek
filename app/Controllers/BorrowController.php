@@ -39,7 +39,7 @@ class BorrowController
             $this->borrow->phone = htmlspecialchars($_POST['telefon']);
             $this->borrow->video = htmlspecialchars($_POST['video']);
             $this->borrow->membership = trim(htmlspecialchars($_POST['status']));
-            //$this->borrow->borrowdate = trim(htmlspecialchars($_POST['ausleihdatum']));
+            $this->borrow->borrowdate = htmlspecialchars($_POST['date']);
             $this->borrow->borrowstate = false;
             $errors = $this->ValidateBorrow();
 
