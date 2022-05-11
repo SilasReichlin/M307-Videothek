@@ -10,6 +10,10 @@
 
 <body>
     <div class="container_contend">
+        <?php
+        include'app/Views/nav.view.php';
+        ?>
+        
         <table>
             <thead>
                 <tr>
@@ -33,7 +37,7 @@
                             <td><?php echo $data['ausleihstatus'] ?? ''; ?></td>
                             <td>
                                 <a href="./edit?id=<?= $data['id'] ?? ''; ?>">
-                                <button type="button" class="b-button">Bearbeiten</button>
+                                    <button type="button" class="b-button">Bearbeiten</button>
                             </td>
                         </tr>
                     <?php } ?>
